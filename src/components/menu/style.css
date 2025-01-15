@@ -1,0 +1,33 @@
+@keyframes blob {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(20px, -50px) scale(1.1);
+  }
+  50% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  75% {
+    transform: translate(20px, 50px) scale(0.95);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+    @media (max-width: 640px) {
+        iframe {
+          height: 100vh;  /* Take full height of the mobile screen */
+          max-height: 100vh;
+        }
+      }
+  animation-delay: 4s;
+}

@@ -174,7 +174,7 @@ const MenuViewer = ({ MenuFile }) => {
 
   const currentCategory = menuCategories[activeCategory];
 
-  const RenderPDFSection = (category) => (
+  const renderPDFSection = (category) => (
     <div className="relative w-full h-full max-h-[700px]">
       {pdfExpanded ? (
         <iframe
@@ -267,12 +267,7 @@ const MenuViewer = ({ MenuFile }) => {
             >
               <div className="bg-white/80 backdrop-blur-md rounded-xl shadow-xl overflow-hidden">
                 {currentCategory.type === 'pdf' ? (
-                  <RenderPDFSection
-                    pdfExpanded={pdfExpanded}
-                    setPdfExpanded={setPdfExpanded}
-                    handleDownloadPDF={handleDownloadPDF}
-                    category={currentCategory}
-                  />
+                  renderPDFSection(currentCategory)
                 ) : (
                   <RenderMenuItems category={currentCategory} />
                 )}

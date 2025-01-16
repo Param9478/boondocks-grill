@@ -1,22 +1,25 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  // faTwitter,
-  faFacebook,
-  // faInstagram,
-} from '@fortawesome/free-brands-svg-icons';
+import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
 
 const Footer = () => {
   return (
-    <footer className="bg-black opacity-90 text-white py-8 lg:py-16 lg:text-left text-center  bottom-0 w-full">
+    <footer className="bg-black opacity-90 text-white py-8 lg:py-16 lg:text-left text-center bottom-0 w-full">
       <div className="container flex flex-wrap m-auto">
         {/* Company Name and Social Media Handlers */}
-        <div className="w-full lg:w-1/4 -mt-0 m-auto flex flex-col items-center">
+        <div className="w-full lg:w-1/4 mt-0 m-auto flex flex-col items-center lg:items-start">
           <h3 className="text-lg font-medium mb-2">THE BOONDOCKS GRILL</h3>
-
-          <FontAwesomeIcon icon={faFacebook} className="text-md" />
-          {/* <FontAwesomeIcon icon={faTwitter} />
-          <FontAwesomeIcon icon={faInstagram} /> */}
+          <div className="flex items-center">
+            <a
+              href="https://www.facebook.com/TheBoondocksGrill"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center text-sm  hover:underline"
+            >
+              <FontAwesomeIcon icon={faFacebook} className="text-md mr-2" />
+              Follow us on Facebook
+            </a>
+          </div>
         </div>
 
         <div className="w-full lg:w-1/4 lg:mt-0 mt-6">

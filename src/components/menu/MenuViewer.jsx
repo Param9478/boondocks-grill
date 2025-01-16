@@ -4,9 +4,11 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import PropTypes from 'prop-types';
 import menu from '../../assets/menu-1.jpg';
 import DesertMenu from '../../assets/Desert-menu.jpg';
+import Liquor from '../../assets/liquor.jpg';
 import TakeoutSpecial from '../../assets/takeout-deals.jpg';
 import RenderPDFSection from './RenderPdfSection';
 import RenderMenuItems from './RenderMenuItems';
+// import PizzaDeal from '../../assets/pizza-deal.jpg';
 
 const MenuViewer = ({ MenuFile }) => {
   const menuCategories = [
@@ -101,6 +103,55 @@ const MenuViewer = ({ MenuFile }) => {
         },
       ],
     },
+    {
+      id: 'liquor-menu',
+      title: 'Liquor',
+      type: 'items',
+      image: Liquor,
+      items: [
+        {
+          category: 'Liquor',
+          dishes: [
+            {
+              name: 'Domestic Beer',
+              price: '7.00',
+              // description:
+              //   'A towering slice of moist carrot cake layered with creamy frosting and a hint of spice.',
+            },
+            {
+              name: 'Premium Beers',
+              price: '7.50',
+              // description:
+              //   'A towering slice of moist carrot cake layered with creamy frosting and a hint of spice.',
+            },
+            {
+              name: 'Hi-Balls',
+              price: '7.00',
+              // description:
+              //   'A towering slice of moist carrot cake layered with creamy frosting and a hint of spice.',
+            },
+            {
+              name: 'Cocktails',
+              price: '8.00',
+              // description:
+              //   'A towering slice of moist carrot cake layered with creamy frosting and a hint of spice.',
+            },
+            {
+              name: 'House Wine',
+              price: '6.50',
+              // description:
+              //   'A towering slice of moist carrot cake layered with creamy frosting and a hint of spice.',
+            },
+            {
+              name: 'Local Wine',
+              price: '6.50',
+              // description:
+              //   'A towering slice of moist carrot cake layered with creamy frosting and a hint of spice.',
+            },
+          ],
+        },
+      ],
+    },
   ];
 
   const [activeCategory, setActiveCategory] = useState(0);
@@ -136,7 +187,7 @@ const MenuViewer = ({ MenuFile }) => {
         <div className="relative">
           {/* Navigation Buttons - Now responsive */}
           {!pdfExpanded && (
-            <div className="flex justify-between items-center mb-4 sm:hidden">
+            <div className="flex justify-between items-center mb-6 sm:hidden">
               <button
                 onClick={prevCategory}
                 className="bg-white p-2 rounded-full shadow-lg hover:bg-gray-50 transition-colors"
@@ -145,7 +196,7 @@ const MenuViewer = ({ MenuFile }) => {
               </button>
 
               {/* Category title for mobile */}
-              <span className="font-bold text-xl text-gray-700">
+              <span className="font-bold text-2xl text-yellow-500 ">
                 {currentCategory.title}
               </span>
 
@@ -215,6 +266,13 @@ const MenuViewer = ({ MenuFile }) => {
           </div>
         )}
       </div>
+      {/* <div className="mt-10 flex items-center justify-center ">
+        <img
+          src={PizzaDeal}
+          alt=""
+          className="object-cover rounded-2xl h-full w-full lg:w-2/4"
+        />
+      </div> */}
     </div>
   );
 };

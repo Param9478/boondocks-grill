@@ -7,7 +7,7 @@ const RenderMenuItems = ({ category }) => (
         alt={category.title}
         className="w-full h-full object-contain rounded-xl"
       />
-      <div className="absolute inset-0 bg-black/30 flex items-center justify-center rounded-xl">
+      <div className="absolute inset-0 bg-black/40 flex items-center justify-center rounded-xl">
         <h2 className="text-3xl font-bold text-white text-center px-4">
           {category.title}
         </h2>

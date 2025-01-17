@@ -8,7 +8,7 @@ import DesertMenu from '../../assets/Desert-menu.jpg';
 import Liquor from '../../assets/liquor.jpg';
 import RenderMenuItems from './RenderMenuItems';
 import PizzaDeal from '../../assets/pizza-deal.jpg';
-import RenderPDFSection from './RenderPdfSection';
+import RenderPDFSection from './RenderPDFSection';
 
 const MenuViewer = ({ MenuFile }) => {
   const menuCategories = [

@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import PropTypes from 'prop-types';
-import menu from '../../assets/menu-1.jpg';
-import TakeoutSpecial from '../../assets/takeout-deals.jpg';
-import DesertMenu from '../../assets/Desert-menu.jpg';
-import Liquor from '../../assets/liquor.jpg';
+import menu from '../../assets/menu-1.webp';
+import TakeoutSpecial from '../../assets/takeout-deals.webp';
+import DesertMenu from '../../assets/Desert-menu.webp';
+import Liquor from '../../assets/liquor.webp';
 import RenderMenuItems from './RenderMenuItems';
-import PizzaDeal from '../../assets/pizza-deal.jpg';
+import PizzaDeal from '../../assets/pizza-deal.webp';
 import RenderPDFSection from './RenderPDFSection';
 
 const MenuViewer = ({ MenuFile }) => {

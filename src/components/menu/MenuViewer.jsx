@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Download } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import PropTypes from 'prop-types';
 import menu from '../../assets/menu-1.jpg';
+import TakeoutSpecial from '../../assets/takeout-deals.jpg';
 import DesertMenu from '../../assets/Desert-menu.jpg';
 import Liquor from '../../assets/liquor.jpg';
-import TakeoutSpecial from '../../assets/takeout-deals.jpg';
 import RenderMenuItems from './RenderMenuItems';
-// import PizzaDeal from '../../assets/pizza-deal.jpg';
+import PizzaDeal from '../../assets/pizza-deal.jpg';
+import RenderPDFSection from './RenderPdfSection';
 
 const MenuViewer = ({ MenuFile }) => {
   const menuCategories = [
@@ -16,7 +17,7 @@ const MenuViewer = ({ MenuFile }) => {
       title: 'Full Menu',
       type: 'pdf',
       pdfUrl: MenuFile,
-      previewImage: menu, // Optional preview image
+      previewImage: menu,
     },
     {
       id: 'takeout-special',
@@ -62,42 +63,12 @@ const MenuViewer = ({ MenuFile }) => {
         {
           category: 'Sweet Treats',
           dishes: [
-            {
-              name: 'Colossal Carrot Cake',
-              price: '7.00',
-              // description:
-              //   'A towering slice of moist carrot cake layered with creamy frosting and a hint of spice.',
-            },
-            {
-              name: 'Deep Apple Pie',
-              price: '7.00',
-              // description:
-              //   'Classic apple pie with a buttery, flaky crust and a sweet cinnamon-spiced apple filling.',
-            },
-            {
-              name: 'Chocolate Fudge Cake',
-              price: '6.00',
-              // description:
-              //   'Rich and decadent chocolate cake with a smooth fudge frosting, perfect for chocolate lovers.',
-            },
-            {
-              name: 'Salted Caramel Cheesecake',
-              price: '7.00',
-              // description:
-              //   'Creamy cheesecake topped with a luscious salted caramel drizzle and a hint of sea salt.',
-            },
-            {
-              name: 'French Cream Cheesecake',
-              price: '7.00',
-              // description:
-              //   'Velvety cheesecake with a rich, creamy texture and a subtle hint of vanilla.',
-            },
-            {
-              name: 'Banana Cream Pie',
-              price: '6.00',
-              // description:
-              //   'Creamy banana filling in a crisp crust, topped with whipped cream and banana slices.',
-            },
+            { name: 'Colossal Carrot Cake', price: '7.00' },
+            { name: 'Deep Apple Pie', price: '7.00' },
+            { name: 'Chocolate Fudge Cake', price: '6.00' },
+            { name: 'Salted Caramel Cheesecake', price: '7.00' },
+            { name: 'French Cream Cheesecake', price: '7.00' },
+            { name: 'Banana Cream Pie', price: '6.00' },
           ],
         },
       ],
@@ -111,42 +82,12 @@ const MenuViewer = ({ MenuFile }) => {
         {
           category: 'Liquor',
           dishes: [
-            {
-              name: 'Domestic Beer',
-              price: '7.00',
-              // description:
-              //   'A towering slice of moist carrot cake layered with creamy frosting and a hint of spice.',
-            },
-            {
-              name: 'Premium Beers',
-              price: '7.50',
-              // description:
-              //   'A towering slice of moist carrot cake layered with creamy frosting and a hint of spice.',
-            },
-            {
-              name: 'Hi-Balls',
-              price: '7.00',
-              // description:
-              //   'A towering slice of moist carrot cake layered with creamy frosting and a hint of spice.',
-            },
-            {
-              name: 'Cocktails',
-              price: '8.00',
-              // description:
-              //   'A towering slice of moist carrot cake layered with creamy frosting and a hint of spice.',
-            },
-            {
-              name: 'House Wine',
-              price: '6.50',
-              // description:
-              //   'A towering slice of moist carrot cake layered with creamy frosting and a hint of spice.',
-            },
-            {
-              name: 'Local Wine',
-              price: '6.50',
-              // description:
-              //   'A towering slice of moist carrot cake layered with creamy frosting and a hint of spice.',
-            },
+            { name: 'Domestic Beer', price: '7.00' },
+            { name: 'Premium Beers', price: '7.50' },
+            { name: 'Hi-Balls', price: '7.00' },
+            { name: 'Cocktails', price: '8.00' },
+            { name: 'House Wine', price: '6.50' },
+            { name: 'Local Wine', price: '6.50' },
           ],
         },
       ],
@@ -168,89 +109,35 @@ const MenuViewer = ({ MenuFile }) => {
     setPdfExpanded(false);
   };
 
-  const handleDownloadPDF = (pdfUrl) => {
-    window.open(pdfUrl, '_blank');
-  };
-
   const currentCategory = menuCategories[activeCategory];
 
-  const renderPDFSection = (category) => (
-    <div className="relative w-full h-full max-h-[700px]">
-      {pdfExpanded ? (
-        <iframe
-          src={`${category.pdfUrl}#toolbar=0`}
-          className="w-full h-full min-h-[700px] border-none rounded-xl"
-          title="Menu PDF"
-        />
-      ) : (
-        <div className="relative h-full">
-          <img
-            src={category.previewImage}
-            alt={category.title}
-            className="w-full max-h-[700px] md:max-h-[500px] lg:max-h-[700px] object-cover rounded-xl"
-            style={{ objectPosition: 'top' }}
-          />
-          <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center p-4">
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white text-center px-4 mb-6">
-              {category.title}
-            </h2>
-            <div className="flex flex-col md:flex-row gap-4">
-              <button
-                onClick={() => setPdfExpanded(true)}
-                className="bg-white text-gray-800 px-4 py-2 md:px-6 md:py-3 rounded-lg font-semibold hover:bg-yellow-50 transition-colors"
-              >
-                View Menu
-              </button>
-              <button
-                onClick={() => handleDownloadPDF(category.pdfUrl)}
-                className="bg-yellow-500 text-white px-4 py-2 md:px-6 md:py-3 rounded-lg font-semibold hover:bg-yellow-600 transition-colors flex items-center gap-2"
-              >
-                <Download className="w-4 h-4 md:w-5 md:h-5" />
-                Download PDF
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-      {pdfExpanded && (
-        <button
-          onClick={() => setPdfExpanded(false)}
-          className="absolute top-2 right-2 md:top-4 md:right-4 bg-white/90 text-gray-800 px-3 py-1 md:px-4 md:py-2 rounded-lg font-medium hover:bg-white transition-colors"
-        >
-          Close PDF
-        </button>
-      )}
-    </div>
-  );
-
   return (
-    <div className="min-h-screen bg-gray-100 p-4 sm:p-8">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center my-12">
-          <h5 className="text-2xl lg:text-3xl font-bold text-gray-800">
-            Discover our delicious offerings
+    <div className="min-h-screen bg-gray-50 p-4 sm:p-6 md:p-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="text-center mb-8 sm:mb-12">
+          <h5 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 tracking-tight">
+            Discover Our Menu
           </h5>
+          <p className="mt-3 sm:mt-4 text-gray-600 text-base sm:text-lg">
+            Explore our carefully curated selection of dishes and specials
+          </p>
         </div>
 
         <div className="relative">
-          {/* Navigation Buttons - Now responsive */}
           {!pdfExpanded && (
             <div className="flex justify-between items-center mb-6 sm:hidden">
               <button
                 onClick={prevCategory}
-                className="bg-white p-2 rounded-full shadow-lg hover:bg-gray-50 transition-colors"
+                className="bg-white p-2.5 rounded-full shadow-lg hover:bg-gray-50 transition-all active:scale-95"
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
-
-              {/* Category title for mobile */}
-              <span className="font-bold text-2xl text-yellow-500 ">
+              <span className="font-bold text-xl text-yellow-500">
                 {currentCategory.title}
               </span>
-
               <button
                 onClick={nextCategory}
-                className="bg-white p-2 rounded-full shadow-lg hover:bg-gray-50 transition-colors"
+                className="bg-white p-2.5 rounded-full shadow-lg hover:bg-gray-50 transition-all active:scale-95"
               >
                 <ChevronRight className="w-5 h-5" />
               </button>
@@ -263,11 +150,16 @@ const MenuViewer = ({ MenuFile }) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
               className="relative"
             >
-              <div className="bg-white/80 backdrop-blur-md rounded-xl shadow-xl overflow-hidden">
+              <div className="bg-white rounded-xl shadow-xl overflow-hidden">
                 {currentCategory.type === 'pdf' ? (
-                  renderPDFSection(currentCategory)
+                  <RenderPDFSection
+                    category={currentCategory}
+                    pdfExpanded={pdfExpanded}
+                    setPdfExpanded={setPdfExpanded}
+                  />
                 ) : (
                   <RenderMenuItems category={currentCategory} />
                 )}
@@ -275,19 +167,17 @@ const MenuViewer = ({ MenuFile }) => {
             </motion.div>
           </AnimatePresence>
 
-          {/* Desktop navigation buttons - hidden on mobile */}
           {!pdfExpanded && (
             <>
               <button
                 onClick={prevCategory}
-                className="hidden sm:block absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 bg-white/80 p-2 rounded-full shadow-lg hover:bg-white transition-colors"
+                className="hidden sm:block absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 bg-white p-4 rounded-full shadow-xl hover:bg-gray-50 transition-all hover:scale-110"
               >
                 <ChevronLeft className="w-6 h-6" />
               </button>
-
               <button
                 onClick={nextCategory}
-                className="hidden sm:block absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 bg-white/80 p-2 rounded-full shadow-lg hover:bg-white transition-colors"
+                className="hidden sm:block absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 bg-white p-4 rounded-full shadow-xl hover:bg-gray-50 transition-all hover:scale-110"
               >
                 <ChevronRight className="w-6 h-6" />
               </button>
@@ -296,29 +186,33 @@ const MenuViewer = ({ MenuFile }) => {
         </div>
 
         {!pdfExpanded && (
-          <div className="flex justify-center gap-2 mt-6">
+          <div className="flex justify-center gap-2 sm:gap-2 mt-6 sm:mt-8">
             {menuCategories.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setActiveCategory(idx)}
-                className={`w-3 h-3 rounded-full transition-colors ${
-                  idx === activeCategory ? 'bg-yellow-600' : 'bg-gray-300'
+                className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all transform hover:scale-110 ${
+                  idx === activeCategory
+                    ? 'bg-yellow-500 scale-110'
+                    : 'bg-gray-300'
                 }`}
               />
             ))}
           </div>
         )}
       </div>
-      {/* <div className="mt-10 flex items-center justify-center ">
+
+      <div className="mt-12 sm:mt-16 flex items-center justify-center px-4 sm:px-6">
         <img
           src={PizzaDeal}
-          alt=""
-          className="object-cover rounded-2xl h-full w-full lg:w-2/4"
+          alt="Pizza Special Deal"
+          className="object-cover rounded-xl sm:rounded-2xl shadow-xl w-full lg:w-2/3 xl:w-1/2 transition-transform hover:scale-[1.02] duration-300"
         />
-      </div> */}
+      </div>
     </div>
   );
 };
+
 MenuViewer.propTypes = {
   MenuFile: PropTypes.string.isRequired,
 };

@@ -3,12 +3,12 @@ import Footer from './components/footer';
 import Homepage from './components/homepage';
 import AboutUs from './components/about-us';
 import Contact from './components/contact-us';
-// import OtherWebsite from './components/otherWebsite';
 import Menu from './components/menu';
+// import OtherWebsite from './components/otherWebsite';
 
 function App() {
   return (
-    <>
+    <div className="overflow-hidden">
       <Router>
         <Routes>
           <Route path="/" element={<Homepage />} />
@@ -18,7 +18,7 @@ function App() {
         </Routes>
       </Router>
       <Footer />
-    </>
+    </div>
   );
 }
 

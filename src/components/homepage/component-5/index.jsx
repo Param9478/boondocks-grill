@@ -96,7 +96,7 @@ Good experience in small town High Prairie`,
         </div>
       </div>
       {/* Review Cards */}
-      <div className="max-w-6xl m-auto -mt-16 px-4 pb-12">
+      <div className="max-w-6xl m-auto -mt-28 px-4 pb-12">
         <Slider {...settings}>
           {reviewerImages.map((data, index) => (
             <div key={index} className="px-3 py-2">

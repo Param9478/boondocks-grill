@@ -28,7 +28,7 @@ const ReviewCard = ({ reviewerData }) => {
         <p className={`text-white mb-2 ${isExpanded ? '' : 'line-clamp-6'}`}>
           {reviewerData.review}
         </p>
-        {reviewerData.review.length > 100 && (
+        {reviewerData.review.length > 90 && (
           <button
             onClick={toggleReadMore}
             className="text-yellow-500 underline mt-2"

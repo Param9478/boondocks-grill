@@ -1,6 +1,6 @@
 import Header from '../header';
 import GoogleMap from './GoogleMap';
-import ReservationSection from './ReservationSection';
+import ReservationSection from './reservationSection';
 import header from '../../assets/header.webp';
 import ContactForm from './ContactForm';
 

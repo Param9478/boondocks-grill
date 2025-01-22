@@ -1,31 +1,43 @@
 import { FaMapMarkerAlt, FaPhoneAlt } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 const ReservationSection = () => {
   return (
-    <section className="p-8 text-center bg-white  rounded-md">
-      <h1 className="text-3xl mb-4 text-center text-black">OUR LOCATION</h1>
-      <p className="text-lg mb-5">
-        <FaMapMarkerAlt className="inline mr-2 mb-1" /> 5023 53 Ave, High
-        Prairie, AB T0G 1E0
-      </p>
+    <motion.section
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="max-w-7xl rounded-lg mx-auto px-6 py-16 bg-white"
+    >
+      <div className="grid md:grid-cols-2 gap-12">
+        <div className="text-left space-y-6">
+          <h2 className="text-3xl font-semibold text-gray-800">Visit Us</h2>
+          <div className="space-y-4">
+            <p className="flex items-center text-gray-700">
+              <FaMapMarkerAlt className="text-yellow-500 mr-3" size={24} />
+              5023 53 Ave, High Prairie, AB T0G 1E0
+            </p>
+            <p className="flex items-center text-gray-700">
+              <FaPhoneAlt className="text-yellow-500 mr-3" size={24} />
+              780 523 5544
+            </p>
+          </div>
+          <p className="text-gray-600 leading-relaxed text-sm">
+            Reserve your table at The Boondocks Grill to experience our
+            delicious food and exceptional service. Call us today to make a
+            reservation.
+          </p>
+        </div>
 
-      <p className="mb-5 text-sm font-light text-gray-600 w-full">
-        Reserve your table at The Boondocks Grill to experience our delicious
-        food and exceptional service. Call or visit our website to make a
-        reservation today.
-      </p>
-
-      <div className="bg-black text-white py-2 px-4 rounded-md inline-block hover:bg-gray-800 transition-colors duration-300">
-        BOOK A TABLE NOW
+        <div className="bg-yellow-50 p-8 rounded-lg">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Hours</h2>
+          <div className="space-y-2 text-gray-700">
+            <p>Monday - Thursday: 11am - 9:30pm</p>
+            <p>Friday - Saturday: 11am - 10:00pm</p>
+            <p>Sunday: Closed</p>
+          </div>
+        </div>
       </div>
-
-      <div className="mt-5 text-center">
-        <h2 className="text-xl mb-4">TELEPHONE RESERVATIONS</h2>
-        <p className="text-lg mb-4">
-          <FaPhoneAlt className="inline mr-2 mb-1" /> 780 523 5544
-        </p>
-      </div>
-    </section>
+    </motion.section>
   );
 };
 

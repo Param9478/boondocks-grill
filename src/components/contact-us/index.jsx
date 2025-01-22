@@ -1,19 +1,26 @@
 import Header from '../header';
-import GoogleMap from './locationMap';
-import ReservationSection from './reservationSection';
+import GoogleMap from './GoogleMap';
+import ReservationSection from './ReservationSection';
+import header from '../../assets/header.webp';
+import ContactForm from './ContactForm';
 
 export default function Contact() {
   return (
-    <>
+    <div className="min-h-screen bg-gray-50">
       <Header
         title="Contact Us"
-        content="We’d love to hear from you! Please don’t hesitate to reach out to us with any questions, comments, or concerns – we’re here to help."
-        imgSrc="https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?q=80&w=3570&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        content="We'd love to hear from you! Please don't hesitate to reach out to us with any questions, comments, or concerns – we're here to help."
+        imgSrc={header}
         css="no-wrap"
       />
 
-      <ReservationSection />
-      <GoogleMap />
-    </>
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        <div className="space-y-16">
+          <ReservationSection />
+          <ContactForm />
+          <GoogleMap />
+        </div>
+      </div>
+    </div>
   );
 }

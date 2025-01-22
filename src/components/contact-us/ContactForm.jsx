@@ -39,6 +39,7 @@ const ContactForm = () => {
         });
         setFormData({ name: '', email: '', message: '' });
         toast.success('Message sent successfully!');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       } catch (error) {
         toast.error('Failed to send message', error);
       }

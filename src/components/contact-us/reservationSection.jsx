@@ -16,10 +16,13 @@ const ReservationSection = () => {
               <FaMapMarkerAlt className="text-yellow-500 mr-3" size={24} />
               5023 53 Ave, High Prairie, AB T0G 1E0
             </p>
-            <p className="flex items-center text-gray-700">
+            <a
+              href="tel:7805235544"
+              className="flex items-center text-gray-700  p-2 transition"
+            >
               <FaPhoneAlt className="text-yellow-500 mr-3" size={24} />
-              780 523 5544
-            </p>
+              <span>Call: 780 523 5544</span>
+            </a>
           </div>
           <p className="text-gray-600 leading-relaxed text-sm">
             Reserve your table at The Boondocks Grill to experience our

@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unknown-property */
 import { useRef } from 'react';
-import ReviewCard from './ReviewCard';
+import ReviewCard from './reviewCard';
 import Slider from 'react-slick';
 import { motion } from 'framer-motion';
 import 'slick-carousel/slick/slick.css';

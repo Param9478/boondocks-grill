@@ -17,6 +17,7 @@ export default function Homepage() {
         isHomePage={true}
       />
       <Component1 />
+      {/* <Menu /> */}
       {/* <Component3 /> */}
       {/* <Component4 /> */}
       <Component5 />

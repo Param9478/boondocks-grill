@@ -16,7 +16,6 @@ export default function Homepage() {
         imgSrc={header}
         isHomePage={true}
       />
-      {/* <RestaurantHeader /> */}
       <Component1 />
       {/* <Menu /> */}
       {/* <Component3 /> */}

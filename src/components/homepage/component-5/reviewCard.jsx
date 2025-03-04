@@ -31,22 +31,22 @@ const ReviewCard = ({ reviewerData }) => {
 
   return (
     <motion.div
-      className="bg-gradient-to-b from-gray-900 to-black max-w-xl w-full mx-auto p-6 md:p-8 rounded-xl shadow-lg border border-gray-800 hover:border-yellow-500/30 transition-all duration-300 font-light relative z-10 h-full flex flex-col"
+      className="'bg-gradient-to-br from-yellow-50 to-white border-yellow-300/20 max-w-xl w-full mx-auto p-6 md:p-8 rounded-xl shadow-lg border border-gray-300 hover:border-yellow-500/50 transition-all duration-300 font-light relative z-10 h-full flex flex-col"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       whileHover={{
         y: -5,
-        boxShadow: '0 10px 25px -5px rgba(234, 88, 12, 0.1)',
+        boxShadow: '0 10px 25px -5px rgba(234, 179, 8, 0.15)',
       }}
     >
       {/* User info section */}
       <div className="flex justify-between items-start mb-4">
         <div>
-          <h3 className="text-white font-semibold text-lg">
+          <h3 className="text-gray-900 font-semibold text-lg">
             {reviewerData.name}
           </h3>
-          <p className="text-gray-400 text-sm">{reviewerData.date}</p>
+          <p className="text-gray-500 text-sm">{reviewerData.date}</p>
         </div>
 
         {/* Rating stars */}
@@ -69,7 +69,7 @@ const ReviewCard = ({ reviewerData }) => {
         initial={{ width: 0 }}
         animate={{ width: '100%' }}
         transition={{ delay: 0.2, duration: 0.5 }}
-        className="h-px bg-gradient-to-r from-transparent via-yellow-500/30 to-transparent mb-4"
+        className="h-px bg-gradient-to-r from-transparent via-yellow-500/40 to-transparent mb-4"
       />
 
       {/* Review content */}
@@ -90,7 +90,7 @@ const ReviewCard = ({ reviewerData }) => {
                 stiffness: 100,
                 damping: 15,
               }}
-              className="text-gray-300 mb-2"
+              className="text-gray-700 mb-2"
             >
               {reviewerData.review}
             </motion.p>
@@ -102,7 +102,7 @@ const ReviewCard = ({ reviewerData }) => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="text-gray-300 mb-2 line-clamp-6"
+              className="text-gray-700 mb-2 line-clamp-6"
             >
               {reviewerData.review}
             </motion.p>
@@ -112,7 +112,7 @@ const ReviewCard = ({ reviewerData }) => {
         {isTextTruncated && (
           <motion.button
             onClick={toggleReadMore}
-            className="text-yellow-500 hover:text-yellow-600 font-medium text-sm mt-2 flex items-center space-x-1"
+            className="text-yellow-600 hover:text-yellow-700 font-medium text-sm mt-2 flex items-center space-x-1"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >

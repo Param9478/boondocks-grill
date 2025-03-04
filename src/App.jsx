@@ -4,12 +4,14 @@ import Homepage from './components/homepage';
 import AboutUs from './components/about-us';
 import Contact from './components/contact-us';
 import Menu from './components/menu';
+import ScrollToTop from './components/ScrollToTop';
 // import OtherWebsite from './components/otherWebsite';
 
 function App() {
   return (
     <div className="overflow-hidden">
       <Router>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/menu" element={<Menu />} />

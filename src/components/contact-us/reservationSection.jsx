@@ -89,9 +89,12 @@ const ReservationSection = ({ itemVariants }) => {
             variants={itemVariants}
           >
             {[
-              { day: 'Monday - Thursday', hours: '11am - 9:30pm' },
-              { day: 'Friday - Saturday', hours: '11am - 10:00pm' },
-              { day: 'Sunday', hours: 'Closed' },
+              { day: 'Monday - Thursday', hours: '11:00 AM – 9:30 PM' },
+              { day: 'Friday - Saturday', hours: '11:00 AM – 10:00 PM' },
+              {
+                day: 'Sunday',
+                hours: 'Closed – Time to recharge! See you soon.',
+              },
             ].map((item, index) => (
               <motion.div
                 key={index}

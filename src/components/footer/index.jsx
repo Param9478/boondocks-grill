@@ -98,7 +98,9 @@ const Footer = () => {
               </div>
               <div className="flex justify-between text-gray-400">
                 <span className="text-sm mr-4">Sun:</span>
-                <span className="text-sm">Enjoy your day off!</span>
+                <span className="text-sm">
+                  Time to recharge! See you soon.
+                </span>
               </div>
             </div>
           </motion.div>

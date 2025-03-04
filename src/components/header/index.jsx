@@ -322,14 +322,16 @@ const Header = ({
                 </motion.a>
 
                 {/* Secondary CTA */}
-                <motion.a
-                  href="/menu"
-                  className="w-full sm:w-auto border border-gray-700 text-white px-8 py-3 rounded-lg text-center hover:border-yellow-500 transform transition-all duration-300 font-medium hover:text-yellow-500"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  View Menu
-                </motion.a>
+                {isHomePage && (
+                  <motion.a
+                    href="/menu"
+                    className="w-full sm:w-auto border border-gray-700 text-white px-8 py-3 rounded-lg text-center hover:border-yellow-500 transform transition-all duration-300 font-medium hover:text-yellow-500"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    View Menu
+                  </motion.a>
+                )}
               </motion.div>
             </motion.div>
           </div>

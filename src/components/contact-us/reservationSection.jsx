@@ -93,7 +93,7 @@ const ReservationSection = ({ itemVariants }) => {
               { day: 'Friday - Saturday', hours: '11:00 AM – 10:00 PM' },
               {
                 day: 'Sunday',
-                hours: 'Closed – Time to recharge! See you soon.',
+                hours: 'Time to recharge! See you soon.',
               },
             ].map((item, index) => (
               <motion.div

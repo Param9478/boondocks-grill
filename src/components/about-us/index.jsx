@@ -6,7 +6,7 @@ import header from '../../assets/header.webp';
 
 export default function AboutUs() {
   return (
-    <div className="mb-5">
+    <div>
       <Header
         title="About Us"
         content="Discover the Charm of The Boondocks Grill"

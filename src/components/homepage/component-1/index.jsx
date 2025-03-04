@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import BoondocksCard from './boondocksCard';
 import family from '../../../assets/component1/family.webp';
-import menu from '../../../assets/component1/menu.webp';
+import menu from '../../../assets/component1/menu-test.webp';
 import memorable from '../../../assets/component1/memorable.webp';
 
 export default function Component1() {
@@ -143,6 +143,7 @@ export default function Component1() {
                   title="Varied Menu Options"
                   context="The Boondocks Grill’s menu caters to all tastes, offering hearty comfort food and lighter, healthy choices. Every dish is made with the freshest ingredients, bursting with flavor and nutrition. Guests can enjoy exploring new flavors or sticking to their classic favorites, ensuring a meal to remember for all."
                   featured={true}
+                  imgPosition="50%"
                 />
               </motion.div>
 

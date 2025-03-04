@@ -1,7 +1,15 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Mail, User, Send, MessageCircle } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  Mail,
+  User,
+  Send,
+  MessageCircle,
+  CheckCircle,
+  XCircle,
+  X,
+} from 'lucide-react';
 import PropTypes from 'prop-types';
 
 const ContactForm = ({ itemVariants }) => {
@@ -11,6 +19,11 @@ const ContactForm = ({ itemVariants }) => {
     message: '',
   });
   const [errors, setErrors] = useState({});
+  const [notification, setNotification] = useState({
+    show: false,
+    type: '',
+    message: '',
+  });
 
   const validateForm = () => {
     const newErrors = {};
@@ -38,11 +51,33 @@ const ContactForm = ({ itemVariants }) => {
             ...formData,
           }).toString(),
         });
+
+        // Show success notification
+        setNotification({
+          show: true,
+          type: 'success',
+          message: "Message sent successfully! We'll get back to you soon.",
+        });
+
+        // Reset form
         setFormData({ name: '', email: '', message: '' });
-        alert('Message sent successfully!');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Hide notification after 5 seconds
+        setTimeout(() => {
+          setNotification((prev) => ({ ...prev, show: false }));
+        }, 5000);
       } catch (error) {
-        alert('Failed to send message: ' + error);
+        // Show error notification
+        setNotification({
+          show: true,
+          type: 'error',
+          message: `Failed to send message. Please try again later. ${error}`,
+        });
+
+        // Hide notification after 5 seconds
+        setTimeout(() => {
+          setNotification((prev) => ({ ...prev, show: false }));
+        }, 5000);
       }
     } else {
       setErrors(newErrors);
@@ -55,11 +90,75 @@ const ContactForm = ({ itemVariants }) => {
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: '' }));
   };
 
+  // Notification component
+  const Notification = () => {
+    const notificationVariants = {
+      hidden: { opacity: 0, y: -50, scale: 0.9 },
+      visible: { opacity: 1, y: 0, scale: 1 },
+      exit: { opacity: 0, y: -20, scale: 0.9 },
+    };
+
+    const colors = {
+      success: {
+        bg: 'bg-green-50',
+        border: 'border-green-400',
+        text: 'text-green-800',
+        icon: <CheckCircle className="text-green-500" size={20} />,
+      },
+      error: {
+        bg: 'bg-red-50',
+        border: 'border-red-400',
+        text: 'text-red-800',
+        icon: <XCircle className="text-red-500" size={20} />,
+      },
+    };
+
+    const style = colors[notification.type];
+
+    return (
+      <AnimatePresence>
+        {notification.show && (
+          <motion.div
+            variants={notificationVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className={`fixed top-6 right-6 z-50 p-4 rounded-lg shadow-lg border ${style.bg} ${style.border} max-w-md`}
+            transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+          >
+            <div className="flex items-start">
+              <div className="flex-shrink-0 mr-3 mt-0.5">{style.icon}</div>
+              <div className="flex-1">
+                <p className={`font-medium ${style.text}`}>
+                  {notification.type === 'success' ? 'Success!' : 'Error'}
+                </p>
+                <p className={`text-sm ${style.text} mt-1`}>
+                  {notification.message}
+                </p>
+              </div>
+              <button
+                onClick={() =>
+                  setNotification((prev) => ({ ...prev, show: false }))
+                }
+                className="flex-shrink-0 ml-4 text-gray-400 hover:text-gray-600 focus:outline-none"
+              >
+                <X size={16} />
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    );
+  };
+
   return (
     <motion.div
       variants={itemVariants}
       className="w-full bg-white rounded-lg shadow-lg overflow-hidden"
     >
+      {/* Notification component */}
+      <Notification />
+
       <div className="grid md:grid-cols-2">
         <div className="p-8 md:p-12">
           <motion.h2
@@ -111,7 +210,13 @@ const ContactForm = ({ itemVariants }) => {
                 } focus:border-yellow-500 transition-all focus:outline-none`}
               />
               {errors.name && (
-                <p className="text-sm text-red-500 mt-1">{errors.name}</p>
+                <motion.p
+                  initial={{ opacity: 0, y: -5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-sm text-red-500 mt-1"
+                >
+                  {errors.name}
+                </motion.p>
               )}
             </motion.div>
 
@@ -135,7 +240,13 @@ const ContactForm = ({ itemVariants }) => {
                 } focus:border-yellow-500 transition-all focus:outline-none`}
               />
               {errors.email && (
-                <p className="text-sm text-red-500 mt-1">{errors.email}</p>
+                <motion.p
+                  initial={{ opacity: 0, y: -5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-sm text-red-500 mt-1"
+                >
+                  {errors.email}
+                </motion.p>
               )}
             </motion.div>
 
@@ -159,7 +270,13 @@ const ContactForm = ({ itemVariants }) => {
                 } focus:border-yellow-500 transition-all focus:outline-none`}
               />
               {errors.message && (
-                <p className="text-sm text-red-500 mt-1">{errors.message}</p>
+                <motion.p
+                  initial={{ opacity: 0, y: -5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-sm text-red-500 mt-1"
+                >
+                  {errors.message}
+                </motion.p>
               )}
             </motion.div>
 
@@ -261,7 +378,9 @@ const ContactForm = ({ itemVariants }) => {
     </motion.div>
   );
 };
+
 ContactForm.propTypes = {
   itemVariants: PropTypes.object.isRequired,
 };
+
 export default ContactForm;

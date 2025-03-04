@@ -1,12 +1,66 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useState, useEffect } from 'react';
-import AboutOptions from './aboutOptions';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-// import burgerBaron from '../../assets/burger-baron.jpg';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  ChevronLeft,
+  ChevronRight,
+  Clock,
+  Car,
+  Truck,
+  Laptop,
+} from 'lucide-react';
 import slider1 from '../../assets/slider1.webp';
 import slider2 from '../../assets/slider2.webp';
 import slider3 from '../../assets/slider3.webp';
 import slider4 from '../../assets/slider4.webp';
+import PropTypes from 'prop-types';
 
+// Redesigned AboutOptions component to match BoondocksCard style
+const AboutOptions = ({ title, content, icon }) => {
+  // Animation variants
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { type: 'spring', stiffness: 100, damping: 12 },
+    },
+  };
+
+  return (
+    <motion.div className="group relative" variants={cardVariants}>
+      <div className="flex items-start gap-4 p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-1 h-full bg-yellow-500 transition-all duration-300 group-hover:w-2"></div>
+
+        {/* Icon container with animation */}
+        <motion.div
+          className="flex-shrink-0 w-12 h-12 bg-yellow-50 rounded-lg flex items-center justify-center text-yellow-500"
+          whileHover={{ scale: 1.1, rotate: 5 }}
+          transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+        >
+          {icon}
+        </motion.div>
+
+        <div className="flex-1">
+          <h3 className="text-lg font-semibold text-gray-800 mb-2 group-hover:text-yellow-600 transition-colors duration-300">
+            {title}
+          </h3>
+          <p className="text-gray-700 font-light leading-relaxed text-sm">
+            {content}
+          </p>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+AboutOptions.propTypes = {
+  title: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  icon: PropTypes.node.isRequired,
+};
+
+// Redesigned OurStory component to match Component1 style
 export default function OurStory() {
   const images = [
     {
@@ -38,7 +92,7 @@ export default function OurStory() {
         setCurrentImageIndex((prevIndex) =>
           prevIndex === images.length - 1 ? 0 : prevIndex + 1
         );
-      }, 4000); // Change slide every 3 seconds
+      }, 4000);
     }
 
     return () => {
@@ -52,128 +106,303 @@ export default function OurStory() {
     setCurrentImageIndex((prevIndex) =>
       prevIndex === images.length - 1 ? 0 : prevIndex + 1
     );
-    setIsAutoPlaying(false); // Pause autoplay when manually navigating
+    setIsAutoPlaying(false);
   };
 
   const previousImage = () => {
     setCurrentImageIndex((prevIndex) =>
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
-    setIsAutoPlaying(false); // Pause autoplay when manually navigating
+    setIsAutoPlaying(false);
   };
 
   // Mouse enter/leave handlers for the carousel
   const handleMouseEnter = () => {
-    setIsAutoPlaying(false); // Pause on hover
+    setIsAutoPlaying(false);
   };
 
   const handleMouseLeave = () => {
-    setIsAutoPlaying(true); // Resume on mouse leave
+    setIsAutoPlaying(true);
+  };
+
+  const optionsData = [
+    {
+      title: 'Dine In',
+      content:
+        'Our restaurant seats 90 and serves all your favorite dishes. Bring your family and friends! 🍔 🍕 🥗 🥩 🍝',
+      icon: <Clock className="w-6 h-6" />,
+    },
+    {
+      title: 'Take Out & Drive-Thru',
+      content:
+        'No time to cook? No problem! Enjoy our full menu with our convenient drive-thru and take-out options—just give us a call! 📞 🍽️',
+      icon: <Car className="w-6 h-6" />,
+    },
+    {
+      title: 'Delivery',
+      content:
+        "All-day delivery to anywhere in High Prairie—home, work, or beyond. We've got you covered! 🚚 🍔",
+      icon: <Truck className="w-6 h-6" />,
+    },
+    {
+      title: 'Online Ordering',
+      content:
+        "Skip the call and order online—it's quick, easy, and convenient! 📱 💻 🍕",
+      icon: <Laptop className="w-6 h-6" />,
+    },
+  ];
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { type: 'spring', stiffness: 100, damping: 12 },
+    },
   };
 
   return (
-    <div>
-      <div className="max-w-6xl px-4 sm:px-6 lg:px-8 pt-12 sm:pt-24 flex flex-col lg:flex-row justify-between m-auto">
-        {/* Text Section */}
-        <div className="lg:w-2/4 w-full text-center lg:text-left mb-8 lg:mb-0">
-          <div className="m-auto">
-            <h1 className="text-3xl mb-4">What We Offer</h1>
-            <div className="mb-8 lg:mb-0 w-full lg:w-3/4">
-              <AboutOptions
-                title="Dine In"
-                content="Our restaurant seats 90 and serves all your favorite dishes. Bring your family and friends! 🍔 🍕 🥗 🥩 🍝"
-              />
-              <hr className="my-6 border-t border-gray-300" />
-              <AboutOptions
-                title="Take Out & Drive-Thru"
-                content="No time to cook? No problem! Enjoy our full menu with our convenient drive-thru and take-out options—just give us a call! 📞 🍽️"
-              />
-              <hr className="my-6 border-t border-gray-300" />
-              <AboutOptions
-                title="Delivery"
-                content="All-day delivery to anywhere in High Prairie—home, work, or beyond. We’ve got you covered! 🚚 🍔"
-              />
-              <hr className="my-6 border-t border-gray-300" />
-              <AboutOptions
-                title="Online Ordering"
-                content="Skip the call and order online—it's quick, easy, and convenient! 📱 💻 🍕"
-              />
-            </div>
-          </div>
+    <div className="relative">
+      {/* Decorative separator between sections */}
+      <div className="h-16 bg-gradient-to-b from-gray-100 to-white relative overflow-hidden">
+        {/* Diagonal stripes accent */}
+        <div className="absolute inset-0 overflow-hidden opacity-20">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                'repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(234, 179, 8, 0.2) 10px, rgba(234, 179, 8, 0.2) 20px)',
+              backgroundSize: '28.28px 28.28px',
+            }}
+          ></div>
         </div>
 
-        {/* Card Section */}
-        <div className="flex-1">
-          <div className="w-full m-auto">
-            <p className="text-sm font-light text-gray-700 lg:w-full m-auto">
-              Our diner has been a beloved fixture for 40 years, initially
-              opening as a Burger Baron in 1987. Over the years, it has
-              undergone numerous transformations and name changes. In 2008, it
-              reopened as The Boondocks Grill and has proudly served the High
-              Prairie community ever since. The restaurant has remained within
-              the Mouallem Family and has a rich history featured in films like
-              &apos;The Last Baron&apos; and &apos;The Lebanese Burger
-              Mafia,&apos; as well as in numerous publications such as the
-              Calgary Herald, Reader&apos;s Digest, Swerve, CBC, and Alberta
-              Venture.
-            </p>
-            <div
-              className="relative mt-6"
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
+        {/* Center accent line */}
+        <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-0.5 bg-yellow-500/60"></div>
+
+        {/* Floating particles */}
+        {[...Array(3)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full bg-yellow-400/30"
+            style={{
+              width: 4 + Math.random() * 4,
+              height: 4 + Math.random() * 4,
+              left: `${20 + Math.random() * 60}%`,
+              top: `${20 + Math.random() * 60}%`,
+            }}
+            animate={{
+              y: [0, -10, 0],
+              opacity: [0.2, 0.5, 0.2],
+            }}
+            transition={{
+              duration: 2 + Math.random() * 2,
+              repeat: Infinity,
+              repeatType: 'reverse',
+            }}
+          />
+        ))}
+      </div>
+
+      <motion.div
+        className="bg-gradient-to-b from-white via-gray-50 to-gray-100 py-16"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6 }}
+      >
+        <motion.div
+          className="mx-auto max-w-7xl px-4 pt-4"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.div className="text-center mb-12" variants={itemVariants}>
+            <motion.h1
+              className="text-3xl font-bold mb-6 text-gray-800"
+              variants={itemVariants}
             >
-              <div className="overflow-hidden rounded-xl">
-                <img
-                  src={images[currentImageIndex].src}
-                  alt={images[currentImageIndex].alt}
-                  className="w-full max-h-64 lg:max-h-96 object-cover transition-transform duration-500"
-                />
-              </div>
+              Our <span className="text-yellow-500">Story</span> & Services
+            </motion.h1>
 
-              {/* Navigation Buttons */}
-              <button
-                onClick={previousImage}
-                className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 rounded-full p-2 hover:bg-white transition-colors"
-                aria-label="Previous image"
-              >
-                <ChevronLeft className="h-6 w-6" />
-              </button>
-              <button
-                onClick={nextImage}
-                className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 rounded-full p-2 hover:bg-white transition-colors"
-                aria-label="Next image"
-              >
-                <ChevronRight className="h-6 w-6" />
-              </button>
+            <motion.div
+              className="h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent mb-6 mx-auto w-2/3"
+              variants={itemVariants}
+            />
+          </motion.div>
 
-              {/* Dots Indicator */}
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-                {images.map((_, index) => (
-                  <button
+          <div className="flex lg:flex-row flex-col gap-8 lg:gap-12">
+            {/* Services Section */}
+            <motion.div className="flex-1 lg:w-1/2" variants={itemVariants}>
+              <motion.div variants={containerVariants} className="space-y-6">
+                {optionsData.map((option, index) => (
+                  <AboutOptions
                     key={index}
-                    onClick={() => {
-                      setCurrentImageIndex(index);
-                      setIsAutoPlaying(false);
-                    }}
-                    className={`h-2 w-2 rounded-full transition-colors ${
-                      currentImageIndex === index ? 'bg-white' : 'bg-gray-300'
-                    }`}
-                    aria-label={`Go to image ${index + 1}`}
+                    title={option.title}
+                    content={option.content}
+                    icon={option.icon}
                   />
                 ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+              </motion.div>
+            </motion.div>
 
-      <div className="max-w-6xl px-4 sm:px-6 lg:px-8 pt-6  m-auto text-center lg:text-left">
-        <p className="text-sm text-center font-bold text-gray-700">
-          The Boondocks Grill proudly sponsors many of High Prairie’s esteemed
-          clubs and organizations. Reach out, and let&apos;s explore how we can
-          work together.
-        </p>
-      </div>
+            {/* Story & Carousel Section */}
+            <motion.div className="flex-1 lg:w-1/2" variants={itemVariants}>
+              {/* Story text */}
+              <motion.div
+                className="bg-white p-6 rounded-xl shadow-lg mb-8 relative overflow-hidden"
+                variants={itemVariants}
+                whileHover={{ y: -5 }}
+                transition={{ type: 'spring', stiffness: 300 }}
+              >
+                <div className="absolute top-0 left-0 w-1 h-full bg-yellow-500"></div>
+                <h3 className="text-xl font-semibold text-gray-800 mb-4">
+                  A <span className="text-yellow-500">Rich</span> History
+                </h3>
+                <p className="text-gray-700 font-light leading-relaxed text-sm">
+                  Our diner has been a beloved fixture for 40 years, initially
+                  opening as a Burger Baron in 1987. Over the years, it has
+                  undergone numerous transformations and name changes. In 2008,
+                  it reopened as The Boondocks Grill and has proudly served the
+                  High Prairie community ever since. The restaurant has remained
+                  within the Mouallem Family and has a rich history featured in
+                  films like 'The Last Baron' and 'The Lebanese Burger Mafia,'
+                  as well as in numerous publications such as the Calgary
+                  Herald, Reader's Digest, Swerve, CBC, and Alberta Venture.
+                </p>
+              </motion.div>
+
+              {/* Image carousel */}
+              <motion.div
+                className="relative overflow-hidden rounded-xl shadow-xl"
+                variants={itemVariants}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentImageIndex}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="aspect-video"
+                  >
+                    <img
+                      src={images[currentImageIndex].src}
+                      alt={images[currentImageIndex].alt}
+                      className="w-full h-full object-cover"
+                    />
+
+                    {/* Gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                  </motion.div>
+                </AnimatePresence>
+
+                {/* Navigation Buttons */}
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={previousImage}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 rounded-full p-2.5 shadow-lg backdrop-blur-sm hover:bg-white transition-colors z-10"
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft className="h-5 w-5 text-gray-800" />
+                </motion.button>
+
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={nextImage}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 rounded-full p-2.5 shadow-lg backdrop-blur-sm hover:bg-white transition-colors z-10"
+                  aria-label="Next image"
+                >
+                  <ChevronRight className="h-5 w-5 text-gray-800" />
+                </motion.button>
+
+                {/* Dots Indicator */}
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                  {images.map((_, index) => (
+                    <motion.button
+                      key={index}
+                      whileHover={{ scale: 1.2 }}
+                      onClick={() => {
+                        setCurrentImageIndex(index);
+                        setIsAutoPlaying(false);
+                      }}
+                      className={`h-2.5 w-2.5 rounded-full transition-all duration-300 ${
+                        currentImageIndex === index
+                          ? 'bg-white w-6'
+                          : 'bg-white/60'
+                      }`}
+                      aria-label={`Go to image ${index + 1}`}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            </motion.div>
+          </div>
+
+          {/* Sponsorship note */}
+          <motion.div variants={itemVariants} className="mt-16 text-center">
+            <div className="inline-block bg-yellow-50 px-6 py-4 rounded-lg border border-yellow-100">
+              <p className="text-yellow-800 font-medium">
+                The Boondocks Grill proudly sponsors many of High Prairie&apos;s
+                esteemed clubs and organizations. Reach out, and let&apos;s
+                explore how we can work together.
+              </p>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* Background accents */}
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full bg-yellow-400/10"
+            initial={{
+              x: Math.random() * 100,
+              y: Math.random() * 100,
+              opacity: 0.2,
+              scale: 0.2,
+            }}
+            animate={{
+              x: [
+                `${Math.random() * 100}%`,
+                `${Math.random() * 100}%`,
+                `${Math.random() * 100}%`,
+              ],
+              y: [
+                `${Math.random() * 100}%`,
+                `${Math.random() * 100}%`,
+                `${Math.random() * 100}%`,
+              ],
+              opacity: [0.2, 0.5, 0.2],
+              scale: [0.2, 0.3, 0.2],
+            }}
+            transition={{
+              duration: Math.random() * 20 + 10,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+            style={{
+              width: `${Math.random() * 2 + 1}vw`,
+              height: `${Math.random() * 2 + 1}vw`,
+            }}
+          />
+        ))}
+      </motion.div>
     </div>
   );
 }

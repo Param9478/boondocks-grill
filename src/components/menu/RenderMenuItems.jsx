@@ -63,7 +63,7 @@ const RenderMenuItems = ({ category }) => {
       ))}
 
       <motion.div
-        className="relative lg:h-[500px] group overflow-hidden rounded-xl"
+        className="relative lg:h-[600px] group overflow-hidden rounded-xl"
         variants={itemVariants}
         whileHover={{
           y: -5,
@@ -74,7 +74,7 @@ const RenderMenuItems = ({ category }) => {
         <img
           src={category.image}
           alt={category.title}
-          className="w-full h-full object-cover rounded-xl transform transition-transform duration-500 group-hover:scale-105"
+          className="w-full h-full object-contain rounded-xl transform transition-transform duration-500 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/20 group-hover:from-black/70 group-hover:to-black/30 transition-all rounded-xl flex items-center justify-center">
           <div className="text-center p-6">
@@ -98,7 +98,7 @@ const RenderMenuItems = ({ category }) => {
       </motion.div>
 
       <motion.div
-        className="p-6 max-h-[500px] overflow-y-auto custom-scrollbar bg-gradient-to-b from-white via-gray-50 to-gray-100 rounded-xl"
+        className="p-6 max-h-[600px] overflow-y-auto custom-scrollbar bg-gradient-to-b from-white via-gray-50 to-gray-100 rounded-xl"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -106,7 +106,7 @@ const RenderMenuItems = ({ category }) => {
         {category.items?.map((section, idx) => (
           <motion.div
             key={idx}
-            className="mb-8 last:mb-0"
+            className="mb- last:mb-0"
             variants={itemVariants}
           >
             <h3 className="text-2xl font-bold mb-6 flex items-center">
@@ -146,7 +146,7 @@ const RenderMenuItems = ({ category }) => {
       </motion.div>
 
       {/* Diagonal stripes accent like in Component1 */}
-      <div className="absolute bottom-0 left-0 right-0 h-16 overflow-hidden opacity-20">
+      {/* <div className="absolute bottom-0 left-0 right-0 h-16 overflow-hidden opacity-20">
         <div
           className="absolute inset-0"
           style={{
@@ -155,7 +155,7 @@ const RenderMenuItems = ({ category }) => {
             backgroundSize: '28.28px 28.28px',
           }}
         ></div>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -122,6 +122,7 @@ export default function Component1() {
                   imgSrc={family}
                   title="Family-friendly Atmosphere"
                   context="The Boondocks Grill offers a warm, inviting atmosphere, perfect for family gatherings or special celebrations. With our spacious seating and attentive staff, every visit becomes a cherished memory. Children are always welcome, with specially curated menu options that delight our youngest guests while pleasing discerning parents."
+                  featured={true}
                 />
               </motion.div>
             </motion.div>
@@ -130,17 +131,17 @@ export default function Component1() {
             <motion.div className="flex-1" variants={itemVariants}>
               <motion.div
                 variants={itemVariants}
-                whileHover={{
-                  y: -5,
-                  boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1)',
-                }}
-                transition={{ duration: 0.3 }}
+                // whileHover={{
+                //   y: -5,
+                //   boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1)',
+                // }}
+                // transition={{ duration: 0.3 }}
               >
                 <BoondocksCard
                   imgSrc={menu}
                   // imgSrc="https://images.unsplash.com/photo-1467003909585-2f8a72700288?q=80&w=2912&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                  title="Seasonally Inspired Menu"
-                  context="Our culinary team crafts each dish with locally sourced, seasonal ingredients that showcase the region's finest flavors. From hearty comfort classics to innovative chef specialties, every plate tells a story of quality and passion. Dietary preferences are thoughtfully accommodated, ensuring a memorable meal for every guest at our table."
+                  title="Varied Menu Options"
+                  context="The Boondocks Grill’s menu caters to all tastes, offering hearty comfort food and lighter, healthy choices. Every dish is made with the freshest ingredients, bursting with flavor and nutrition. Guests can enjoy exploring new flavors or sticking to their classic favorites, ensuring a meal to remember for all."
                   featured={true}
                 />
               </motion.div>
@@ -148,11 +149,11 @@ export default function Component1() {
               <motion.div
                 className="mt-8 sm:mt-12"
                 variants={itemVariants}
-                whileHover={{
-                  y: -5,
-                  boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1)',
-                }}
-                transition={{ duration: 0.3 }}
+                // whileHover={{
+                //   y: -5,
+                //   boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1)',
+                // }}
+                // transition={{ duration: 0.3 }}
               >
                 <BoondocksCard
                   imgSrc={memorable}
@@ -160,6 +161,7 @@ export default function Component1() {
                   title="Memorable Dining Experience"
                   context="At The Boondocks Grill, we believe dining is more than just a meal—it's an experience to be treasured. Our cozy ambiance, complemented by soft lighting and tasteful décor, sets the perfect backdrop for life's special moments. From first dates to milestone celebrations, we pride ourselves on creating the ideal setting for memories that last a lifetime."
                   imgPosition="50%"
+                  featured={true}
                 />
               </motion.div>
             </motion.div>

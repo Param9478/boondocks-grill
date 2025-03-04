@@ -90,7 +90,7 @@ const ReviewCard = ({ reviewerData }) => {
                 stiffness: 100,
                 damping: 15,
               }}
-              className="text-gray-600 mb-2"
+              className="text-gray-300 mb-2"
             >
               {reviewerData.review}
             </motion.p>

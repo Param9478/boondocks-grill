@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Disclosure, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { motion } from 'framer-motion';
+import { ChevronRight } from 'lucide-react';
 
 const navigation = [
   { name: 'Home', path: '/' },
@@ -131,22 +132,7 @@ const Navbar = () => {
                     rel="noopener noreferrer"
                     className="relative overflow-hidden group bg-yellow-500 px-4 py-2 rounded-lg font-medium text-white transition-all duration-300 flex items-center space-x-2"
                   >
-                    <span>Order Now</span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="2"
-                      stroke="currentColor"
-                      className="w-4 h-4 transform group-hover:translate-x-1 transition-transform"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M5 12h14M12 5l7 7-7 7"
-                      />
-                    </svg>
-
+                    <span>Order Now</span> <ChevronRight className="w-4 h-4" />
                     {/* Hover effect */}
                     <span className="absolute bottom-0 left-0 w-full h-full bg-yellow-600 transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-bottom -z-10" />
                   </a>
@@ -196,23 +182,9 @@ const Navbar = () => {
                     href="https://boondocks2.popmenu.com/#menu?location=boondocks"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-3 block text-white bg-yellow-500 px-4 py-3 rounded-md font-medium hover:bg-yellow-600 transition-all duration-300 items-center justify-center space-x-2"
+                    className="mt-3 text-white bg-yellow-500 px-4 py-3 rounded-md font-medium hover:bg-yellow-600 transition-all duration-300 flex items-center space-x-2"
                   >
-                    <span>Order Now</span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="2"
-                      stroke="currentColor"
-                      className="w-4 h-4"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M5 12h14M12 5l7 7-7 7"
-                      />
-                    </svg>
+                    <span>Order Now</span> <ChevronRight className="w-4 h-4" />
                   </a>
                 </motion.div>
               </div>

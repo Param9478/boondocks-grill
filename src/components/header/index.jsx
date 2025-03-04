@@ -3,6 +3,7 @@ import { motion, useSpring, useTransform } from 'framer-motion';
 import PropTypes from 'prop-types';
 import Navbar from './navbar';
 import pizza from '../../assets/header/pizza.png';
+import { ChevronRight } from 'lucide-react';
 
 const Header = ({
   title = 'Welcome to The Boondocks Grill',
@@ -296,7 +297,7 @@ const Header = ({
                     ))}
                   </div>
                   <span className="text-sm text-gray-400">
-                    4.8/5 from over 200+ reviews
+                    4.5/5 from over 200+ reviews
                   </span>
                 </motion.div>
               )}
@@ -317,21 +318,7 @@ const Header = ({
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <span>Order Now</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="2"
-                    stroke="currentColor"
-                    className="w-4 h-4"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M5 12h14M12 5l7 7-7 7"
-                    />
-                  </svg>
+                  <span>Order Now</span> <ChevronRight className="w-4 h-4" />
                 </motion.a>
 
                 {/* Secondary CTA */}

@@ -48,9 +48,9 @@ const BoondocksCard = ({
       {/* Card Content */}
       <div className="p-5 md:p-6">
         <div className="flex items-center mb-3">
-          {featured && (
+          {/* {featured && (
             <div className="h-4 w-1 bg-yellow-500 rounded-full mr-3"></div>
-          )}
+          )} */}
           <h3
             className={`text-xl md:text-2xl font-medium ${featured ? 'text-yellow-500' : 'text-gray-800'}`}
           >
@@ -63,7 +63,7 @@ const BoondocksCard = ({
         </p>
 
         {/* Learn More Link */}
-        <motion.div
+        {/* <motion.div
           className="mt-4 text-sm font-medium text-yellow-500 flex items-center group cursor-pointer"
           whileHover={{ x: 5 }}
         >
@@ -82,7 +82,7 @@ const BoondocksCard = ({
               d="M9 5l7 7-7 7"
             />
           </svg>
-        </motion.div>
+        </motion.div> */}
       </div>
     </motion.div>
   );

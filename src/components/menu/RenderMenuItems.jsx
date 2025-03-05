@@ -105,8 +105,8 @@ const RenderMenuItems = ({ category }) => {
       >
         {category.items?.map((section, idx) => (
           <motion.div
-            key={idx}
-            className="mb- last:mb-0"
+            key={`${section.category}-${idx}`}
+            className="mb-4 last:mb-0"
             variants={itemVariants}
           >
             <h3 className="text-2xl font-bold mb-6 flex items-center">

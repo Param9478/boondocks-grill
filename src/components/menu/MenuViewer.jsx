@@ -332,14 +332,50 @@ const MenuViewer = ({ MenuFile }) => {
               </p>
             </div>
           )}
-        </motion.div>
 
-        {/* Promotion Section - Animated and Stylish */}
-        <Promotion
-          PizzaDeal={PizzaDeal}
-          showPromotion={showPromotion}
-          setShowPromotion={setShowPromotion}
-        />
+          {/* Promotion Section - Animated and Stylish */}
+          <Promotion
+            PizzaDeal={PizzaDeal}
+            showPromotion={showPromotion}
+            setShowPromotion={setShowPromotion}
+          />
+        </motion.div>
+        {/* Background accents */}
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full bg-yellow-400/10"
+            initial={{
+              x: Math.random() * 100,
+              y: Math.random() * 100,
+              opacity: 0.2,
+              scale: 0.2,
+            }}
+            animate={{
+              x: [
+                `${Math.random() * 100}%`,
+                `${Math.random() * 100}%`,
+                `${Math.random() * 100}%`,
+              ],
+              y: [
+                `${Math.random() * 100}%`,
+                `${Math.random() * 100}%`,
+                `${Math.random() * 100}%`,
+              ],
+              opacity: [0.2, 0.5, 0.2],
+              scale: [0.2, 0.3, 0.2],
+            }}
+            transition={{
+              duration: Math.random() * 20 + 10,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+            style={{
+              width: `${Math.random() * 2 + 1}vw`,
+              height: `${Math.random() * 2 + 1}vw`,
+            }}
+          />
+        ))}
       </motion.div>
     </div>
   );

@@ -27,9 +27,9 @@ const Promotion = ({ PizzaDeal, showPromotion, setShowPromotion }) => {
             </h3>
 
             <p className="text-gray-600 mb-4">
-              Choose medium, large, or extra large pizza with your favorite
-              toppings, 10 wings of your choice, and a 2L Pepsi - the perfect
-              combo for takeout or delivery!
+              Choose two medium, large, or extra-large pizzas with your favorite
+              toppings, an appetizer of your choice, and a 2L Pepsi – the
+              perfect combo for takeout or delivery!
             </p>
 
             <div className="flex flex-wrap items-center gap-4 mb-2">

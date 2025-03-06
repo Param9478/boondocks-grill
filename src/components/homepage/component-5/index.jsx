@@ -220,7 +220,7 @@ Good experience in small town High Prairie`,
         >
           <Slider ref={sliderRef} {...settings} className="reviews-slider">
             {reviewerImages.map((data, index) => (
-              <div key={index} className="px-3 py-2">
+              <div key={index} className="px-3 py-5">
                 <ReviewCard reviewerData={data} />
               </div>
             ))}

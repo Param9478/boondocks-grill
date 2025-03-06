@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 
 const Promotion = ({ PizzaDeal, showPromotion, setShowPromotion }) => {
   if (!showPromotion) return null;
@@ -17,8 +18,9 @@ const Promotion = ({ PizzaDeal, showPromotion, setShowPromotion }) => {
           {/* Left content section */}
           <div className="p-6 sm:p-8 md:w-3/5 flex flex-col justify-center">
             <div className="flex items-center mb-2">
-              <div className="bg-yellow-100 text-yellow-700 text-xs font-medium px-2.5 py-0.5 rounded-full flex items-center">
-                Classic Combo
+              <div className="bg-yellow-100 text-yellow-700 text-xs font-medium px-3 py-1 rounded-full flex items-center gap-1 shadow-md">
+                <Sparkles className="w-4 h-4 text-yellow-600" />
+                Wow Deal
               </div>
             </div>
 

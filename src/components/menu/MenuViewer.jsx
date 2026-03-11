@@ -3,13 +3,81 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import PropTypes from 'prop-types';
 import menu from '../../assets/menu-1.webp';
-import TakeoutSpecial from '../../assets/takeout-deals.webp';
 import DesertMenu from '../../assets/Desert-menu.webp';
 import Liquor from '../../assets/liquor.webp';
 import RenderMenuItems from './RenderMenuItems';
 import PizzaDeal from '../../assets/pizza-deal.webp';
+import DealsPage1 from '../../assets/deal1.webp';
+import DealsPage2 from '../../assets/deal2.webp';
 import RenderPDFSection from './RenderPDFSection';
+import RenderDealsSection from './RenderDealsSection';
 import Promotion from './Promotion';
+
+// All deal categories passed together into RenderDealsSection
+const dealCategories = [
+  {
+    id: 'great-savings',
+    title: 'Great Savings',
+    image: DealsPage1,
+    description: 'Best combo deals — pasta, wings, calzone & more!',
+    items: [
+      {
+        category: 'Takeout Combos',
+        dishes: [
+          {
+            name: 'WOW! Pasta Meal',
+            price: '33',
+            description: '2 Baked Lasagna or Spaghetti + 2 Cans of Pop',
+          },
+          {
+            name: 'Pizza + Wings Combo',
+            price: '36',
+            description: 'Large Pizza (up to 3 toppings) + 10 Chicken Wings + 2 Cans of Pop',
+          },
+          {
+            name: '2-2-2 Calzone Deal',
+            price: '36',
+            description: '2 Calzones, 2 Sides of Fries + 2 Pop',
+          },
+          {
+            name: 'Double Up & Save Wings',
+            price: '16 / 30',
+            description: '10 Wings $16  |  20 Wings $30\nHot, Honey Garlic, Teriyaki, Salt & Pepper, Golden Crispy, BBQ, Sweet Thai Chili',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'pizza-deals',
+    title: 'Pizza Deals',
+    image: DealsPage2,
+    description: 'Double up on pizzas & save big!',
+    items: [
+      {
+        category: 'Double Up & Save Pizzas',
+        dishes: [
+          { name: 'Cheese', price: '27–52', description: '2 Med $27  |  2 Large $32  |  2 X-Large $37  |  2 Giants $52' },
+          { name: '1 Topping', price: '28–54', description: '2 Med $28  |  2 Large $33  |  2 X-Large $38  |  2 Giants $54' },
+          { name: '2 Toppings', price: '30–56', description: '2 Med $30  |  2 Large $35  |  2 X-Large $40  |  2 Giants $56' },
+          { name: '3 Toppings', price: '31–58', description: '2 Med $31  |  2 Large $36  |  2 X-Large $41  |  2 Giants $58' },
+          { name: '4 Toppings', price: '32–60', description: '2 Med $32  |  2 Large $37  |  2 X-Large $42  |  2 Giants $60' },
+          { name: 'Gourmet', price: '33–62', description: '2 Med $33  |  2 Large $38  |  2 X-Large $43  |  2 Giants $62' },
+        ],
+      },
+      {
+        category: 'Make it a WOW! Deal — +$12',
+        dishes: [
+          {
+            name: 'Add an Appetizer + 2L Pepsi or 3 Cans of Pop',
+            price: '+12',
+            description: '8pc Wings, Dry Ribs, Deep Fried Pickles, Pizza Bread, Cactus Cut Potatoes, Large Caesar Salad, Large Fries & Gravy, or Large Onion Rings',
+          },
+        ],
+      },
+    ],
+  },
+];
 
 const MenuViewer = ({ MenuFile }) => {
   const menuCategories = [
@@ -22,40 +90,10 @@ const MenuViewer = ({ MenuFile }) => {
       description: 'Our complete selection of appetizers, mains, and specials',
     },
     {
-      id: 'takeout-special',
-      title: 'Take Out Special',
-      type: 'items',
-      image: TakeoutSpecial,
-      description: 'Perfect meal deals for enjoying at home',
-      items: [
-        {
-          category: 'Takeout Deals',
-          dishes: [
-            {
-              name: 'Wow Pasta Meal',
-              price: '32',
-              description: '2 Baked Spaghetti or Lasagna + 2 Cans of Pop',
-            },
-            {
-              name: 'Pizza and Wings',
-              price: '35',
-              description:
-                'Large Pizza (up to 3 toppings) + 10 Chicken Wings + 2 Cans Pop',
-            },
-            {
-              name: '2-2-2 Calzone',
-              price: '34',
-              description: '2 Calzone + 2 Side Fries + 2 Can Pop',
-            },
-            {
-              name: 'Wings ',
-              price: '28',
-              description:
-                'Hot, Honey Garlic, Teriyaki, Sweet Chilli, BBQ, Salt & Pepper, Crispy',
-            },
-          ],
-        },
-      ],
+      id: 'deals',
+      title: 'Great Savings',
+      type: 'deals',
+      description: 'Combo deals, double-up pizzas & wing specials',
     },
     {
       id: 'dessert-menu',
@@ -117,15 +155,11 @@ const MenuViewer = ({ MenuFile }) => {
 
   const currentCategory = menuCategories[activeCategory];
 
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
+      transition: { staggerChildren: 0.1, delayChildren: 0.2 },
     },
   };
 
@@ -140,7 +174,7 @@ const MenuViewer = ({ MenuFile }) => {
 
   return (
     <div className="relative bg-gradient-to-b from-gray-50 via-white to-gray-100 overflow-hidden">
-      {/* Decorative Elements */}
+      {/* Decorative top strip */}
       <div className="h-16 bg-gradient-to-b from-gray-100 to-white relative overflow-hidden">
         <div className="absolute inset-0 overflow-hidden opacity-20 pointer-events-none">
           <div
@@ -150,10 +184,8 @@ const MenuViewer = ({ MenuFile }) => {
                 'repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(234, 179, 8, 0.1) 10px, rgba(234, 179, 8, 0.1) 20px)',
               backgroundSize: '28.28px 28.28px',
             }}
-          ></div>
+          />
         </div>
-
-        {/* Floating particles */}
         {[...Array(8)].map((_, i) => (
           <motion.div
             key={i}
@@ -188,6 +220,7 @@ const MenuViewer = ({ MenuFile }) => {
           className="mx-auto max-w-7xl px-4 pt-4"
           variants={containerVariants}
         >
+          {/* Heading */}
           <motion.div
             className="text-center mb-10 sm:mb-12"
             variants={containerVariants}
@@ -212,7 +245,9 @@ const MenuViewer = ({ MenuFile }) => {
             </motion.p>
           </motion.div>
 
+          {/* Slider */}
           <div className="relative">
+            {/* Mobile nav */}
             {!pdfExpanded && (
               <div className="flex justify-between items-center mb-6 sm:hidden">
                 <button
@@ -253,12 +288,15 @@ const MenuViewer = ({ MenuFile }) => {
                       {currentCategory.title}
                     </div>
                   )}
+
                   {currentCategory.type === 'pdf' ? (
                     <RenderPDFSection
                       category={currentCategory}
                       pdfExpanded={pdfExpanded}
                       setPdfExpanded={setPdfExpanded}
                     />
+                  ) : currentCategory.type === 'deals' ? (
+                    <RenderDealsSection categories={dealCategories} resetKey={activeCategory} />
                   ) : (
                     <RenderMenuItems category={currentCategory} />
                   )}
@@ -266,6 +304,7 @@ const MenuViewer = ({ MenuFile }) => {
               </motion.div>
             </AnimatePresence>
 
+            {/* Desktop arrows */}
             {!pdfExpanded && (
               <>
                 <button
@@ -273,12 +312,7 @@ const MenuViewer = ({ MenuFile }) => {
                   className="hidden sm:flex sm:items-center sm:justify-center absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 bg-white p-4 rounded-full shadow-xl hover:bg-gray-50 transition-all hover:scale-110 group"
                 >
                   <span className="absolute right-full mr-2 bg-gray-800 text-white rounded-md py-1 px-2 text-xs opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                    {
-                      menuCategories[
-                        (activeCategory - 1 + menuCategories.length) %
-                          menuCategories.length
-                      ].title
-                    }
+                    {menuCategories[(activeCategory - 1 + menuCategories.length) % menuCategories.length].title}
                   </span>
                   <ChevronLeft className="w-6 h-6 text-yellow-500" />
                 </button>
@@ -288,17 +322,14 @@ const MenuViewer = ({ MenuFile }) => {
                 >
                   <ChevronRight className="w-6 h-6 text-yellow-500" />
                   <span className="absolute left-full ml-2 bg-gray-800 text-white rounded-md py-1 px-2 text-xs opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                    {
-                      menuCategories[
-                        (activeCategory + 1) % menuCategories.length
-                      ].title
-                    }
+                    {menuCategories[(activeCategory + 1) % menuCategories.length].title}
                   </span>
                 </button>
               </>
             )}
           </div>
 
+          {/* Dot nav */}
           {!pdfExpanded && (
             <div className="flex flex-col items-center gap-2 mt-8 sm:mt-10">
               <div className="flex justify-center gap-2 sm:gap-3">
@@ -309,18 +340,14 @@ const MenuViewer = ({ MenuFile }) => {
                     className="flex flex-col items-center group"
                   >
                     <div
-                      className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full transition-all transform hover:scale-110 ${
-                        idx === activeCategory
-                          ? 'bg-yellow-500 scale-110'
-                          : 'bg-gray-300'
-                      }`}
+                      className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full transition-all transform hover:scale-110 ${idx === activeCategory ? 'bg-yellow-500 scale-110' : 'bg-gray-300'
+                        }`}
                     />
                     <span
-                      className={`text-xs mt-1 transition-all ${
-                        idx === activeCategory
-                          ? 'text-yellow-500 font-medium'
-                          : 'text-gray-400 group-hover:text-gray-500'
-                      }`}
+                      className={`text-xs mt-1 transition-all ${idx === activeCategory
+                        ? 'text-yellow-500 font-medium'
+                        : 'text-gray-400 group-hover:text-gray-500'
+                        }`}
                     >
                       {category.title}
                     </span>
@@ -333,47 +360,27 @@ const MenuViewer = ({ MenuFile }) => {
             </div>
           )}
 
-          {/* Promotion Section - Animated and Stylish */}
           <Promotion
             PizzaDeal={PizzaDeal}
             showPromotion={showPromotion}
             setShowPromotion={setShowPromotion}
           />
         </motion.div>
-        {/* Background accents */}
+
+        {/* BG accents */}
         {[...Array(6)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute rounded-full bg-yellow-400/10"
-            initial={{
-              x: Math.random() * 100,
-              y: Math.random() * 100,
-              opacity: 0.2,
-              scale: 0.2,
-            }}
+            initial={{ x: Math.random() * 100, y: Math.random() * 100, opacity: 0.2, scale: 0.2 }}
             animate={{
-              x: [
-                `${Math.random() * 100}%`,
-                `${Math.random() * 100}%`,
-                `${Math.random() * 100}%`,
-              ],
-              y: [
-                `${Math.random() * 100}%`,
-                `${Math.random() * 100}%`,
-                `${Math.random() * 100}%`,
-              ],
+              x: [`${Math.random() * 100}%`, `${Math.random() * 100}%`, `${Math.random() * 100}%`],
+              y: [`${Math.random() * 100}%`, `${Math.random() * 100}%`, `${Math.random() * 100}%`],
               opacity: [0.2, 0.5, 0.2],
               scale: [0.2, 0.3, 0.2],
             }}
-            transition={{
-              duration: Math.random() * 20 + 10,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-            style={{
-              width: `${Math.random() * 2 + 1}vw`,
-              height: `${Math.random() * 2 + 1}vw`,
-            }}
+            transition={{ duration: Math.random() * 20 + 10, repeat: Infinity, ease: 'easeInOut' }}
+            style={{ width: `${Math.random() * 2 + 1}vw`, height: `${Math.random() * 2 + 1}vw` }}
           />
         ))}
       </motion.div>

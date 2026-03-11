@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FaMapMarkerAlt, FaPhoneAlt } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 
 const ReservationSection = ({ itemVariants }) => {
@@ -51,6 +51,18 @@ const ReservationSection = ({ itemVariants }) => {
                 size={24}
               />
               <span>Call: 780 523 5544</span>
+            </motion.a>
+            <motion.a
+              href="mailto:ali.mouallem@gmail.com"
+              className="flex items-center text-gray-700 transition group"
+              whileHover={{ x: 5 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+            >
+              <FaEnvelope
+                className="text-yellow-500 mr-3 group-hover:scale-110 transition-transform"
+                size={24}
+              />
+              <span>Email: ali.mouallem@gmail.com</span>
             </motion.a>
           </motion.div>
 

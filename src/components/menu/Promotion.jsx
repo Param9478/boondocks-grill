@@ -73,7 +73,7 @@ const Promotion = ({ PizzaDeal, showPromotion, setShowPromotion }) => {
         </div>
 
         {/* Close button */}
-        <button
+        {/* <button
           onClick={() => setShowPromotion(false)}
           className="absolute top-3 right-3 bg-white/80 hover:bg-white text-gray-600 hover:text-gray-800 rounded-full p-1.5 transition-colors shadow-sm"
           aria-label="Close promotion"
@@ -90,7 +90,7 @@ const Promotion = ({ PizzaDeal, showPromotion, setShowPromotion }) => {
               clipRule="evenodd"
             />
           </svg>
-        </button>
+        </button> */}
       </div>
     </motion.div>
   );

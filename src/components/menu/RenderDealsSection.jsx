@@ -44,25 +44,27 @@ const RenderDealsSection = ({ categories }) => {
             <div className="grid md:grid-cols-2 gap-0 h-[600px]">
 
                 {/* LEFT image */}
+                {/* LEFT image */}
                 <div className="relative overflow-hidden group">
                     <img
                         src={current.image}
                         alt={current.title}
-                        className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                        className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                    <div className="absolute top-5 left-5">
-                        <div
-                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold shadow-lg"
-                            style={{ backgroundColor: accentColor, color: '#fff' }}
-                        >
-                            <Tag className="w-3 h-3" />
-                            GREAT SAVINGS
+
+                    {/* Same overlay as RenderMenuItems */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/20 group-hover:from-black/70 group-hover:to-black/30 transition-all flex items-center justify-center">
+                        <div className="text-center p-6">
+                            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+                                <span className="text-yellow-500">
+                                    {current.title.split(' ')[0]}
+                                </span>
+                                {current.title.split(' ').length > 1 && (
+                                    <span> {current.title.split(' ').slice(1).join(' ')}</span>
+                                )}
+                            </h2>
+                            <div className="h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent my-4 mx-auto w-2/3" />
                         </div>
-                    </div>
-                    <div className="absolute bottom-0 left-0 right-0 p-5">
-                        <h2 className="text-2xl font-bold text-white leading-tight">{current.title}</h2>
-                        <p className="text-white/70 text-sm mt-1">{current.description}</p>
                     </div>
                 </div>
 

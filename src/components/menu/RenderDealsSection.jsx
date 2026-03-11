@@ -16,7 +16,8 @@ const RenderDealsSection = ({ categories }) => {
     const accentBorder = isRedPage ? 'border-red-200' : 'border-green-200';
 
     return (
-        <div className="relative w-full overflow-hidden bg-white rounded-xl">
+        // Outer wrapper div te add karo
+        <div className="relative w-full overflow-hidden bg-white rounded-xl" style={{ height: '653px' }}>
 
             {/* Tab switcher */}
             <div className="flex border-b border-gray-100">
@@ -50,6 +51,7 @@ const RenderDealsSection = ({ categories }) => {
                         src={current.image}
                         alt={current.title}
                         className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
+                    // object-cover object-top hatao, object-contain lagao
                     />
 
                     {/* Same overlay as RenderMenuItems */}

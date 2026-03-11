@@ -282,7 +282,7 @@ const MenuViewer = ({ MenuFile }) => {
                 transition={{ duration: 0.3 }}
                 className="relative"
               >
-                <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-yellow-100 relative">
+                <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-yellow-100 relative" style={{ minHeight: '653px' }}>
                   {!pdfExpanded && (
                     <div className="absolute top-3 left-3 z-10 bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">
                       {currentCategory.title}

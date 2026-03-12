@@ -10,74 +10,9 @@ import PizzaDeal from '../../assets/pizza-deal.webp';
 import DealsPage1 from '../../assets/deal1.webp';
 import DealsPage2 from '../../assets/deal2.webp';
 import RenderPDFSection from './RenderPDFSection';
-import RenderDealsSection from './RenderDealsSection';
 import Promotion from './Promotion';
 
-// All deal categories passed together into RenderDealsSection
-const dealCategories = [
-  {
-    id: 'great-savings',
-    title: 'Great Savings',
-    image: DealsPage1,
-    description: 'Best combo deals — pasta, wings, calzone & more!',
-    items: [
-      {
-        category: 'Takeout Combos',
-        dishes: [
-          {
-            name: 'WOW! Pasta Meal',
-            price: '33',
-            description: '2 Baked Lasagna or Spaghetti + 2 Cans of Pop',
-          },
-          {
-            name: 'Pizza + Wings Combo',
-            price: '36',
-            description: 'Large Pizza (up to 3 toppings) + 10 Chicken Wings + 2 Cans of Pop',
-          },
-          {
-            name: '2-2-2 Calzone Deal',
-            price: '36',
-            description: '2 Calzones, 2 Sides of Fries + 2 Pop',
-          },
-          {
-            name: 'Double Up & Save Wings',
-            price: '16 / 30',
-            description: '10 Wings $16  |  20 Wings $30\nHot, Honey Garlic, Teriyaki, Salt & Pepper, Golden Crispy, BBQ, Sweet Thai Chili',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: 'pizza-deals',
-    title: 'Pizza Deals',
-    image: DealsPage2,
-    description: 'Double up on pizzas & save big!',
-    items: [
-      {
-        category: 'Double Up & Save Pizzas',
-        dishes: [
-          { name: 'Cheese', price: '27–52', description: '2 Med $27  |  2 Large $32  |  2 X-Large $37  |  2 Giants $52' },
-          { name: '1 Topping', price: '28–54', description: '2 Med $28  |  2 Large $33  |  2 X-Large $38  |  2 Giants $54' },
-          { name: '2 Toppings', price: '30–56', description: '2 Med $30  |  2 Large $35  |  2 X-Large $40  |  2 Giants $56' },
-          { name: '3 Toppings', price: '31–58', description: '2 Med $31  |  2 Large $36  |  2 X-Large $41  |  2 Giants $58' },
-          { name: '4 Toppings', price: '32–60', description: '2 Med $32  |  2 Large $37  |  2 X-Large $42  |  2 Giants $60' },
-          { name: 'Gourmet', price: '33–62', description: '2 Med $33  |  2 Large $38  |  2 X-Large $43  |  2 Giants $62' },
-        ],
-      },
-      {
-        category: 'Make it a WOW! Deal — +$12',
-        dishes: [
-          {
-            name: 'Add an Appetizer + 2L Pepsi or 3 Cans of Pop',
-            price: '+12',
-            description: '8pc Wings, Dry Ribs, Deep Fried Pickles, Pizza Bread, Cactus Cut Potatoes, Large Caesar Salad, Large Fries & Gravy, or Large Onion Rings',
-          },
-        ],
-      },
-    ],
-  },
-];
+
 
 const MenuViewer = ({ MenuFile }) => {
   const menuCategories = [
@@ -90,10 +25,66 @@ const MenuViewer = ({ MenuFile }) => {
       description: 'Our complete selection of appetizers, mains, and specials',
     },
     {
-      id: 'deals',
+      id: 'pizza-deals',
+      title: 'Pizza Deals',
+      image: DealsPage2,
+      description: 'Double up on pizzas & save big!',
+      items: [
+        {
+          category: 'Double Up & Save Pizzas',
+          dishes: [
+            { name: 'Cheese', price: '27–52', description: '2 Med $27  |  2 Large $32  |  2 X-Large $37  |  2 Giants $52' },
+            { name: '1 Topping', price: '28–54', description: '2 Med $28  |  2 Large $33  |  2 X-Large $38  |  2 Giants $54' },
+            { name: '2 Toppings', price: '30–56', description: '2 Med $30  |  2 Large $35  |  2 X-Large $40  |  2 Giants $56' },
+            { name: '3 Toppings', price: '31–58', description: '2 Med $31  |  2 Large $36  |  2 X-Large $41  |  2 Giants $58' },
+            { name: '4 Toppings', price: '32–60', description: '2 Med $32  |  2 Large $37  |  2 X-Large $42  |  2 Giants $60' },
+            { name: 'Gourmet', price: '33–62', description: '2 Med $33  |  2 Large $38  |  2 X-Large $43  |  2 Giants $62' },
+          ],
+        },
+        {
+          category: 'Make it a WOW! Deal — +$12',
+          dishes: [
+            {
+              name: 'Add an Appetizer + 2L Pepsi or 3 Cans of Pop',
+              price: '+12',
+              description: '8pc Wings, Dry Ribs, Deep Fried Pickles, Pizza Bread, Cactus Cut Potatoes, Large Caesar Salad, Large Fries & Gravy, or Large Onion Rings',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'great-savings',
       title: 'Great Savings',
-      type: 'deals',
-      description: 'Combo deals, double-up pizzas & wing specials',
+      image: DealsPage1,
+      description: 'Best combo deals — pasta, wings, calzone & more!',
+      items: [
+        {
+          category: 'Takeout Combos',
+          dishes: [
+            {
+              name: 'WOW! Pasta Meal',
+              price: '33',
+              description: '2 Baked Lasagna or Spaghetti + 2 Cans of Pop',
+            },
+            {
+              name: 'Pizza + Wings Combo',
+              price: '36',
+              description: 'Large Pizza (up to 3 toppings) + 10 Chicken Wings + 2 Cans of Pop',
+            },
+            {
+              name: '2-2-2 Calzone Deal',
+              price: '36',
+              description: '2 Calzones, 2 Sides of Fries + 2 Pop',
+            },
+            {
+              name: 'Double Up & Save Wings',
+              price: '16 / 30',
+              description: '10 Wings $16  |  20 Wings $30\nHot, Honey Garlic, Teriyaki, Salt & Pepper, Golden Crispy, BBQ, Sweet Thai Chili',
+            },
+          ],
+        },
+      ],
     },
     {
       id: 'dessert-menu',
@@ -295,8 +286,6 @@ const MenuViewer = ({ MenuFile }) => {
                       pdfExpanded={pdfExpanded}
                       setPdfExpanded={setPdfExpanded}
                     />
-                  ) : currentCategory.type === 'deals' ? (
-                    <RenderDealsSection categories={dealCategories} resetKey={activeCategory} />
                   ) : (
                     <RenderMenuItems category={currentCategory} />
                   )}
